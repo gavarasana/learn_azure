@@ -56,7 +56,7 @@
 # az vm user update -u demoadmin --name "rgdemo-linux-1c" --resource-group "rgdemo-rg" --ssh-key-value "C:\Users\gavar\.ssh\az_id_rsa.pub"
 
 # shutdown vm
-az vm stop --name "rgdemo-linux-1c" --resource-group "rgdemo-rg"
+# az vm stop --name "rgdemo-linux-1c" --resource-group "rgdemo-rg"
 
 # Get VM all ip address with a VM
 #az vm list-ip-addresses --name "rgdemo-linux-1c" --resource-group "rgdemo-rg"

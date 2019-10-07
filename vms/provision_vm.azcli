@@ -1,0 +1,26 @@
+# Login to AZ
+az login
+# set account
+az account set --subscription "d5f24952-8dc2-4c18-9aa8-e5ca01a92b06"
+# Create resource group
+az group create --name rgdemo-rg --location eastus2
+az configure --defaults group=rgdemo-rg
+az group list --output table
+# Create a virtual network
+az network vnet create --name rgdemo-vnet --resource-group rgdemo-rg --address-prefix 10.0.0.0/16 --subnet-name rgdemo-subnet --subnet-prefix 10.0.0.0/24
+#create a public network 
+az network public-ip create --name rgdemo-lnx-ip1 --resource-group rgdemo-rg
+# List public ip address 
+az network public-ip list --output table
+# Create a network security group
+az network nsg create --name rgdemo-nsg --resource-group rgdemo-rg
+# create a network security group rule
+az network nsg rule create --name rgdemo-nsg-allow_ssh-rule --nsg-name rgdemo-nsg --resource-group rgdemo-rg --access Allow --direction Inbound --protocol Tcp --description "Allow SSH access" --source-address-prefixes "71.126.184.162" --source-port-ranges * --destination-address-prefixes * --destination-port-ranges * --priority 100
+# create a network interface card
+az network nic create --name rgdemo-nic --resource-group rgdemo-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg --public-ip-address rgdemo-lnx-ip1
+#azure list all VM images
+az vm image list --output table
+# create a virtual machine
+az vm create --name rgdemo-lnx-vm1 --admin-username rgadmin --resource-group rgdemo-rg --nics rgdemo-nic --image UbuntuLTS --ssh-key-values '~/.ssh/az_id_rsa.pub' --size Standard_A2_v2
+# list all public IP address
+# az vm list-ip-addresses --name rgdemo-win-vm1 --output table

@@ -1,7 +1,7 @@
 # Login to AZ
 az login
 # set account
-az account set --subscription "d5f24952-8dc2-4c18-9aa8-e5ca01a92b06"
+az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf"
 # Create resource group
 az group create --name rgdemo-rg --location eastus2
 az configure --defaults group=rgdemo-rg

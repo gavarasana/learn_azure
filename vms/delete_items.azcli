@@ -3,12 +3,12 @@ az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf" # "d5f24952
 # az vm image list --output table
 az vm stop --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
 az vm deallocate --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
-az vm delete --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
-az network nic delete --name rgdemo-nic --resource-group rgdemo-rg
-az disk delete --name rgdemo-lnx-vm1_OsDisk_1_4a8e4a091bcb4d949a6e918842938496 --resource-group rgdemo-rg
-az network public-ip delete --name rgdemo-lnx-ip1 --resource-group rgdemo-rg
-az network nsg delete --name rgdemo-nsg --resource-group rgdemo-rg
-az network vnet delete --name rgdemo-vnet --resource-group rgdemo-rg
-az group delete --name NetworkWatcherRG
-az group delete --name rgdemo-rg
+# az vm delete --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
+# az network nic delete --name rgdemo-nic --resource-group rgdemo-rg
+# az disk delete --name rgdemo-lnx-vm1_OsDisk_1_4a8e4a091bcb4d949a6e918842938496 --resource-group rgdemo-rg
+# az network public-ip delete --name rgdemo-lnx-ip1 --resource-group rgdemo-rg
+# az network nsg delete --name rgdemo-nsg --resource-group rgdemo-rg
+# az network vnet delete --name rgdemo-vnet --resource-group rgdemo-rg
+# az group delete --name NetworkWatcherRG
+# az group delete --name rgdemo-rg
 #az vm start --name rgdemo-lnx-vm1 --resource-group rgdemo-rg

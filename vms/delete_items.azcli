@@ -1,5 +1,5 @@
 az login
-az account set --subscription "d5f24952-8dc2-4c18-9aa8-e5ca01a92b06"
+az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf"
 #az vm image list --output table
 #az vm stop --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
 #az vm deallocate --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
@@ -11,3 +11,4 @@ az account set --subscription "d5f24952-8dc2-4c18-9aa8-e5ca01a92b06"
 #az network vnet delete --name rgdemo-vnet --resource-group rgdemo-rg
 #az group delete --name NetworkWatcherRG
 #az group delete --name rgdemo-rg
+az vm start --name "rgdemo-linux-3" --resource-group "rgdemo-rg"

@@ -1,13 +1,35 @@
 az login
-az account set --subscription "d5f24952-8dc2-4c18-9aa8-e5ca01a92b06"
-#az vm image list --output table
+az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf"
+# List all VMs
+# az vm image list --output table
+# Stop all VMs
 #az vm stop --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
-#az vm deallocate --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
-#az vm delete --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
-#az network nic delete --name rgdemo-nic --resource-group rgdemo-rg
-#az disk delete --name rgdemo-lnx-vm1_OsDisk_1_0e68ddbbf98b4fbebcd2147942e761de --resource-group rgdemo-rg
-#az network public-ip delete --name rgdemo-lnx-ip1 --resource-group rgdemo-rg
-#az network nsg delete --name rgdemo-nsg --resource-group rgdemo-rg
-#az network vnet delete --name rgdemo-vnet --resource-group rgdemo-rg
-#az group delete --name NetworkWatcherRG
-#az group delete --name rgdemo-rg
+#az vm stop --name rgdemo-lnx-vm2 --resource-group rgdemo-rg
+#az vm stop --name rgdemo-lnx-vm3 --resource-group rgdemo-rg
+
+# Delete disk and others
+# az disk delete --name rgdemo-lnx-vm1_OsDisk_1_4a8e4a091bcb4d949a6e918842938496 --resource-group rgdemo-rg
+# Delete public IP
+#az network public-ip delete --name rgdemo-lnx-ip2 --resource-group rgdemo-rg
+# az network nsg delete --name rgdemo-nsg --resource-group rgdemo-rg
+# az network vnet delete --name rgdemo-vnet --resource-group rgdemo-rg
+# az group delete --name NetworkWatcherRG
+# az group delete --name rgdemo-rg
+
+
+# remove nic from a vm
+az vm nic remove -g rgdemo-rg --vm-name rgdemo-lnx-vm1 --nics  rgdemo-nic
+az vm nic remove -g rgdemo-rg --vm-name rgdemo-lnx-vm2 --nics  rgdemo-nic-1
+az vm nic remove -g rgdemo-rg --vm-name rgdemo-lnx-vm3 --nics  rgdemo-nic-2
+# delete nics
+az network nic delete --name rgdemo-nic-1 --resource-group rgdemo-rg
+az network nic delete --name rgdemo-nic-2 --resource-group rgdemo-rg
+az network nic delete --name rgdemo-nic-3 --resource-group rgdemo-rg
+# deallocate servers
+ az vm deallocate --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
+ az vm deallocate --name rgdemo-lnx-vm2 --resource-group rgdemo-rg
+ az vm deallocate --name rgdemo-lnx-vm3 --resource-group rgdemo-rg
+ # delete vms
+ #az vm delete --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
+ az vm delete --name rgdemo-lnx-vm2 --resource-group rgdemo-rg
+ az vm delete --name rgdemo-lnx-vm3 --resource-group rgdemo-rg

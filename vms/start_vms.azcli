@@ -1,17 +1,17 @@
 az login
 az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf"
 # List all VMs
-az vm list --output table
+az vm list -d --output table    
 # Start all VMs
-az vm start --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
-az vm start --name rgdemo-lnx-vm2 --resource-group rgdemo-rg
-az vm start --name rgdemo-lnx-vm3 --resource-group rgdemo-rg
-az vm start --name rgdemo-lnx-vm4 --resource-group rgdemo-rg
-az vm start --name rgdemo-lnx-vm5 --resource-group rgdemo-rg
-az vm start --name rgdemo-lnx-vm6 --resource-group rgdemo-rg
-az vm start --name rgdemo-lnx-vm7 --resource-group rgdemo-rg
-az vm start --name rgdemo-lnx-vm8 --resource-group rgdemo-rg
-az vm start --name rgdemo-lnx-vm9 --resource-group rgdemo-rg
+az vm start --name rgdemo-lnx-vm1 --resource-group rgdemo-rg --no-wait  # master node
+az vm start --name rgdemo-lnx-vm2 --resource-group rgdemo-rg --no-wait # master node
+az vm start --name rgdemo-lnx-vm3 --resource-group rgdemo-rg --no-wait # master node
+az vm start --name rgdemo-lnx-vm4 --resource-group rgdemo-rg --no-wait # data node
+az vm start --name rgdemo-lnx-vm5 --resource-group rgdemo-rg --no-wait # data node
+az vm start --name rgdemo-lnx-vm6 --resource-group rgdemo-rg --no-wait # data node
+az vm start --name rgdemo-lnx-vm7 --resource-group rgdemo-rg --no-wait # data node
+#az vm start --name rgdemo-lnx-vm8 --resource-group rgdemo-rg --no-wait # client node
+#az vm start --name rgdemo-lnx-vm9 --resource-group rgdemo-rg --no-wait # client node
 
 az vm list-ip-addresses --name rgdemo-lnx-vm1 --output table
 az vm list-ip-addresses --name rgdemo-lnx-vm2 --output table

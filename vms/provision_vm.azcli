@@ -26,6 +26,8 @@
     #az network nic create --name rgdemo-nic-7 --resource-group rgdemo-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
     # az network nic create --name rgdemo-nic-8 --resource-group rgdemo-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
     # az network nic create --name rgdemo-nic-9 --resource-group rgdemo-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
+    az network nic create --name rgdemo-nic-10 --resource-group rgdemo-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
+
 # List all nics
     #az network nic list --output table
 #azure list all available VM images
@@ -40,6 +42,7 @@
     #az vm create --name rgdemo-lnx-vm7 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rgdemo-rg --nics rgdemo-nic-7 --image UbuntuLTS --size Standard_A2_v2
     #az vm create --name rgdemo-lnx-vm8 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rgdemo-rg --nics rgdemo-nic-8 --image UbuntuLTS --size Standard_A2_v2
     az vm create --name rgdemo-lnx-vm9 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rgdemo-rg --nics rgdemo-nic-9 --image UbuntuLTS --size Standard_A2_v2
+    az vm create --name rgdemo-lnx-vm10 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rgdemo-rg --nics rgdemo-nic-10 --image UbuntuLTS --size Standard_A2_v2
 # List all VMs
     az vm list --output table
 # list all public IP address

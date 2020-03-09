@@ -3,15 +3,14 @@ az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf"
 # List all VMs
 # $vmList = az vm list --output table
 # deallocate all vms
-az vm list | ForEach-Object {
-     az vm deallocate --name $_.Name --resource-group "rgdemo-rg" 
-}
-az vm deallocate --name "rgdemo-lnx-vm1" --resource-group "rgdemo-rg" --no-wait
-az vm deallocate --name "rgdemo-lnx-vm2" --resource-group "rgdemo-rg" --no-wait
-az vm deallocate --name "rgdemo-lnx-vm3" --resource-group "rgdemo-rg" --no-wait
-az vm deallocate --name "rgdemo-lnx-vm4" --resource-group "rgdemo-rg" --no-wait
-az vm deallocate --name "rgdemo-lnx-vm5" --resource-group "rgdemo-rg" --no-wait
-az vm deallocate --name "rgdemo-lnx-vm6" --resource-group "rgdemo-rg" --no-wait
-az vm deallocate --name "rgdemo-lnx-vm7" --resource-group "rgdemo-rg" --no-wait
-az vm deallocate --name "rgdemo-lnx-vm8" --resource-group "rgdemo-rg" --no-wait
-az vm deallocate --name "rgdemo-lnx-vm9" --resource-group "rgdemo-rg" --no-wait
+
+# az vm stop --name "rgdemo-lnx-vm1" --resource-group "rgdemo-rg" --no-wait
+az vm deallocate --name "rgdemo-lnx-vm1" --resource-group "rgdemo-rg" --no-wait # Master node
+az vm deallocate --name "rgdemo-lnx-vm2" --resource-group "rgdemo-rg" --no-wait # Master node
+az vm deallocate --name "rgdemo-lnx-vm3" --resource-group "rgdemo-rg" --no-wait # Master node
+az vm deallocate --name "rgdemo-lnx-vm4" --resource-group "rgdemo-rg" --no-wait # data node
+az vm deallocate --name "rgdemo-lnx-vm5" --resource-group "rgdemo-rg" --no-wait # data node
+az vm deallocate --name "rgdemo-lnx-vm6" --resource-group "rgdemo-rg" --no-wait # data node
+az vm deallocate --name "rgdemo-lnx-vm7" --resource-group "rgdemo-rg" --no-wait # data node
+az vm deallocate --name "rgdemo-lnx-vm8" --resource-group "rgdemo-rg" --no-wait #delete
+az vm deallocate --name "rgdemo-lnx-vm9" --resource-group "rgdemo-rg" --no-wait # delete

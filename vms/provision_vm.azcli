@@ -1,5 +1,5 @@
 # Login to AZ
-    # az login
+    az login
 # set account
     # az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf"
 # Create resource group
@@ -29,7 +29,7 @@
 # List all nics
     #az network nic list --output table
 #azure list all available VM images
-    az vm image list --output table
+    # az vm image list --output table
 # create a virtual machine
     # az vm create --name rgdemo-lnx-vm1 --admin-username rgadmin --resource-group rgdemo-rg --nics rgdemo-nic-1 --image UbuntuLTS --ssh-key-values '~/.ssh/az_id_rsa.pub' --size Standard_A2_v2
     #az vm create --name rgdemo-lnx-vm2 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rgdemo-rg --nics rgdemo-nic-2 --image UbuntuLTS --size Standard_A2_v2
@@ -39,9 +39,9 @@
     #az vm create --name rgdemo-lnx-vm6 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rgdemo-rg --nics rgdemo-nic-6 --image UbuntuLTS --size Standard_A2_v2
     #az vm create --name rgdemo-lnx-vm7 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rgdemo-rg --nics rgdemo-nic-7 --image UbuntuLTS --size Standard_A2_v2
     #az vm create --name rgdemo-lnx-vm8 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rgdemo-rg --nics rgdemo-nic-8 --image UbuntuLTS --size Standard_A2_v2
-    az vm create --name rgdemo-lnx-vm9 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rgdemo-rg --nics rgdemo-nic-9 --image UbuntuLTS --size Standard_A2_v2
+    # az vm create --name rgdemo-lnx-vm9 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rgdemo-rg --nics rgdemo-nic-9 --image UbuntuLTS --size Standard_A2_v2
 # List all VMs
-    az vm list --output table
+    # az vm list --output table
 # list all public IP address
     # az vm list-ip-addresses --name rgdemo-lnx-vm1 --output table
     # az vm list-ip-addresses --name rgdemo-lnx-vm2 --output table

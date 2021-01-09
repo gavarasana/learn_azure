@@ -18,10 +18,10 @@
 # create a network security group rule
     az network nsg rule create --name rgdemo-nsg-allow_ssh-rule --nsg-name rgdemo-nsg --resource-group rg-learn-rg --access Allow --direction Inbound --protocol Tcp --description "Allow SSH access" --source-address-prefixes "71.114.66.20" --source-port-ranges * --destination-address-prefixes * --destination-port-ranges * --priority 100
 # create a network interface card
-    az network nic create --name rgdemo-nic-1  --public-ip-address rgdemo-lnx-ip1 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg
-    # az network nic create --name rgdemo-nic-2 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
-    # az network nic create --name rgdemo-nic-3 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
-    # az network nic create --name rgdemo-nic-4 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
+   # az network nic create --name rgdemo-nic-1  --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg --public-ip-address rgdemo-lnx-ip1
+     az network nic create --name rgdemo-nic-2 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
+     az network nic create --name rgdemo-nic-3 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
+     az network nic create --name rgdemo-nic-4 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
     # az network nic create --name rgdemo-nic-5 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
     #az network nic create --name rgdemo-nic-6 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
     #az network nic create --name rgdemo-nic-7 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
@@ -32,10 +32,10 @@
 #azure list all available VM images
     az vm image list --output table
 # create a virtual machine
-    az vm create --name rgdemo-lnx-vm1 --admin-username rgadmin --resource-group rg-learn-rg --nics rgdemo-nic-1 --image UbuntuLTS --ssh-key-values '~/.ssh/az_id_rsa.pub' --size Standard_A2_v2
-    #az vm create --name rgdemo-lnx-vm2 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-2 --image UbuntuLTS --size Standard_A2_v2
-    #az vm create --name rgdemo-lnx-vm3 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-3 --image UbuntuLTS --size Standard_A2_v2
-    #az vm create --name rgdemo-lnx-vm4 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-4 --image UbuntuLTS --size Standard_A2_v2
+    #az vm create --name rgdemo-lnx-vm1 --admin-username rgadmin --resource-group rg-learn-rg --nics rgdemo-nic-1 --image UbuntuLTS --ssh-key-values '~/.ssh/az_id_rsa.pub' --size Standard_A2_v2
+    az vm create --name rgdemo-lnx-vm2 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-2 --image UbuntuLTS --size Standard_A2_v2
+    az vm create --name rgdemo-lnx-vm3 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-3 --image UbuntuLTS --size Standard_A2_v2
+    az vm create --name rgdemo-lnx-vm4 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-4 --image UbuntuLTS --size Standard_A2_v2
     #az vm create --name rgdemo-lnx-vm5 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-5 --image UbuntuLTS --size Standard_A2_v2
     #az vm create --name rgdemo-lnx-vm6 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-6 --image UbuntuLTS --size Standard_A2_v2
     #az vm create --name rgdemo-lnx-vm7 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-7 --image UbuntuLTS --size Standard_A2_v2
@@ -45,5 +45,5 @@
     az vm list --output table
 # list all public IP address
     az vm list-ip-addresses --name rgdemo-lnx-vm1 --output table
-    # az vm list-ip-addresses --name rgdemo-lnx-vm2 --output table
-    # az vm list-ip-addresses --name rgdemo-lnx-vm3 --output table
+     az vm list-ip-addresses --name rgdemo-lnx-vm2 --output table
+     az vm list-ip-addresses --name rgdemo-lnx-vm3 --output table

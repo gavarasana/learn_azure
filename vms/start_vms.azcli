@@ -1,13 +1,27 @@
 az login
-az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf"
+az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf";
+$resourceGroupName = "rg-learn-rg";
 # List all VMs
 az vm list --output table
 # Start all VMs
-az vm start --name rgdemo-lnx-vm1 --resource-group rg-learn-rg
+for ($i = 1; $i -lt 5; $i++) 
+{
+    $vmName = "rgdemo-lnx-vm" + $i;
+    az vm start --name $vmName --resource-group $resourceGroupName --no-wait
+}
+
+#az vm start --name rgdemo-lnx-vm1 --resource-group rg-learn-rg --no-wait
+#az vm start --name rgdemo-lnx-vm2 --resource-group rg-learn-rg --no-wait
+# az vm start --name rgdemo-lnx-vm2 --resource-group rg-learn-rg --no-wait
+# az vm start --name rgdemo-lnx-vm3 --resource-group rg-learn-rg --no-wait
 
 # List IP address
-az vm list-ip-addresses --name "rgdemo-lnx-vm1" --resource-group rg-learn-rg
-
+$resourceGroupName = "rg-learn-rg";
+for ($i = 1; $i -lt 5; $i++) 
+{
+    $vmName = "rgdemo-lnx-vm" + $i;
+    az vm list-ip-addresses --resource-group $resourceGroupName --name $vmName 
+}
 # az vm start --name rgdemo-lnx-vm2 --resource-group rgdemo-rg
 # az vm start --name rgdemo-lnx-vm3 --resource-group rgdemo-rg
 # az vm start --name rgdemo-lnx-vm4 --resource-group rgdemo-rg

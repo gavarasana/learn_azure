@@ -9,34 +9,6 @@ for ($i = 1; $i -lt 5; $i++)
     $vmName = "rgdemo-lnx-vm" + $i;
     az vm start --name $vmName --resource-group $resourceGroupName --no-wait
 }
-
-#az vm start --name rgdemo-lnx-vm1 --resource-group rg-learn-rg --no-wait
-#az vm start --name rgdemo-lnx-vm2 --resource-group rg-learn-rg --no-wait
-# az vm start --name rgdemo-lnx-vm2 --resource-group rg-learn-rg --no-wait
-# az vm start --name rgdemo-lnx-vm3 --resource-group rg-learn-rg --no-wait
-
 # List IP address
 $resourceGroupName = "rg-learn-rg";
-for ($i = 1; $i -lt 5; $i++) 
-{
-    $vmName = "rgdemo-lnx-vm" + $i;
-    az vm list-ip-addresses --resource-group $resourceGroupName --name $vmName 
-}
-# az vm start --name rgdemo-lnx-vm2 --resource-group rgdemo-rg
-# az vm start --name rgdemo-lnx-vm3 --resource-group rgdemo-rg
-# az vm start --name rgdemo-lnx-vm4 --resource-group rgdemo-rg
-# az vm start --name rgdemo-lnx-vm5 --resource-group rgdemo-rg
-# az vm start --name rgdemo-lnx-vm6 --resource-group rgdemo-rg
-# az vm start --name rgdemo-lnx-vm7 --resource-group rgdemo-rg
-# az vm start --name rgdemo-lnx-vm8 --resource-group rgdemo-rg
-# az vm start --name rgdemo-lnx-vm9 --resource-group rgdemo-rg
-
-# az vm list-ip-addresses --name rgdemo-lnx-vm1 --output table
-# az vm list-ip-addresses --name rgdemo-lnx-vm2 --output table
-# az vm list-ip-addresses --name rgdemo-lnx-vm3 --output table
-# az vm list-ip-addresses --name rgdemo-lnx-vm4 --output table
-# az vm list-ip-addresses --name rgdemo-lnx-vm5 --output table
-# az vm list-ip-addresses --name rgdemo-lnx-vm6 --output table
-# az vm list-ip-addresses --name rgdemo-lnx-vm7 --output table
-# az vm list-ip-addresses --name rgdemo-lnx-vm8 --output table
-# az vm list-ip-addresses --name rgdemo-lnx-vm9 --output table
+az vm list-ip-addresses --ids $(az vm list -g $resourceGroupName --query "[].id" -o tsv)

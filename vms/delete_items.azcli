@@ -17,19 +17,22 @@ az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf"
 # az group delete --name rgdemo-rg
 
 
-# remove nic from a vm
-az vm nic remove -g rgdemo-rg --vm-name rgdemo-lnx-vm1 --nics  rgdemo-nic
-az vm nic remove -g rgdemo-rg --vm-name rgdemo-lnx-vm2 --nics  rgdemo-nic-1
-az vm nic remove -g rgdemo-rg --vm-name rgdemo-lnx-vm3 --nics  rgdemo-nic-2
-# delete nics
-az network nic delete --name rgdemo-nic-1 --resource-group rgdemo-rg
-az network nic delete --name rgdemo-nic-2 --resource-group rgdemo-rg
-az network nic delete --name rgdemo-nic-3 --resource-group rgdemo-rg
-# deallocate servers
- az vm deallocate --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
- az vm deallocate --name rgdemo-lnx-vm2 --resource-group rgdemo-rg
- az vm deallocate --name rgdemo-lnx-vm3 --resource-group rgdemo-rg
- # delete vms
- #az vm delete --name rgdemo-lnx-vm1 --resource-group rgdemo-rg
- az vm delete --name rgdemo-lnx-vm2 --resource-group rgdemo-rg
- az vm delete --name rgdemo-lnx-vm3 --resource-group rgdemo-rg
+# # remove nic from a vm
+# az vm nic remove -g rgdemo-rg --vm-name rgdemo-lnx-vm1 --nics  rgdemo-nic
+# az vm nic remove -g rgdemo-rg --vm-name rgdemo-lnx-vm2 --nics  rgdemo-nic-1
+# az vm nic remove -g rgdemo-rg --vm-name rgdemo-lnx-vm3 --nics  rgdemo-nic-2
+# # delete nics
+# az network nic delete --name rgdemo-nic-1 --resource-group rgdemo-rg
+# az network nic delete --name rgdemo-nic-2 --resource-group rgdemo-rg
+# az network nic delete --name rgdemo-nic-3 --resource-group rgdemo-rg
+
+# stop VMs
+# List IP address
+$resourceGroupName = "rg-learn-rg";
+for ($i = 1; $i -lt 5; $i++) 
+{
+    $vmName = "rgdemo-lnx-vm" + $i;
+    az vm stop --name $vmName --resource-group $resourceGroupName
+    az vm deallocate --name $vmName --resource-group $resourceGroupName
+    az vm delete --name $vmName --resource-group $resourceGroupName
+}

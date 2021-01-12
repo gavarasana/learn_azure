@@ -1,8 +1,9 @@
 # Login to AZ
     az login
+
 # set account
-    
-    
+    $subscriptionId = "4e2be44e-b375-46f2-af02-be5db4e96fbf";    
+    az account set --subscription $subscriptionId
 # Create resource group
     # az group create --name rg-learn-rg --location eastus2
     # az configure --defaults group=rg-learn-rg
@@ -10,7 +11,7 @@
 # Create a virtual network
     az network vnet create --name rgdemo-vnet --resource-group rg-learn-rg --address-prefix 10.0.0.0/16 --subnet-name rgdemo-subnet --subnet-prefix 10.0.0.0/24
 #create a public network 
-    az network public-ip create --name rgdemo-lnx-ip1 --resource-group rg-learn-rg
+    az network public-ip create --name rgdemo-lb-ip1 --resource-group rg-learn-rg
 # List public ip address 
     az network public-ip list --output table
 # Create a network security group
@@ -19,9 +20,9 @@
     az network nsg rule create --name rgdemo-nsg-allow_ssh-rule --nsg-name rgdemo-nsg --resource-group rg-learn-rg --access Allow --direction Inbound --protocol Tcp --description "Allow SSH access" --source-address-prefixes "71.114.66.20" --source-port-ranges * --destination-address-prefixes * --destination-port-ranges * --priority 100
 # create a network interface card
    # az network nic create --name rgdemo-nic-1  --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg --public-ip-address rgdemo-lnx-ip1
-     az network nic create --name rgdemo-nic-2 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
-     az network nic create --name rgdemo-nic-3 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
-     az network nic create --name rgdemo-nic-4 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
+    #  az network nic create --name rgdemo-nic-2 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
+    #  az network nic create --name rgdemo-nic-3 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
+    #  az network nic create --name rgdemo-nic-4 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
     # az network nic create --name rgdemo-nic-5 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
     #az network nic create --name rgdemo-nic-6 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
     #az network nic create --name rgdemo-nic-7 --resource-group rg-learn-rg --vnet-name rgdemo-vnet --subnet rgdemo-subnet --network-security-group rgdemo-nsg 
@@ -31,11 +32,28 @@
     az network nic list --output table
 #azure list all available VM images
     az vm image list --output table
+# set resource group name
+    $resourceGroupName = "rg-learn-rg";
+# create availability set
+    $availabilitySetName = "rg-aset"
+    az vm availability-set create --name $availabilitySetName --resource-group $resourceGroupName --subscription $subscriptionId
+# List availability set
+    az vm availability-set show -n $availabilitySetName -g $resourceGroupName
+# create publicly accessible VM
+    az vm create --name rgdemo-lnx-vm1 --admin-username rgadmin --resource-group $resourceGroupName --availability-set $availabilitySetName --nics rgdemo-nic-1 --image UbuntuLTS --ssh-key-values '~/.ssh/az_id_rsa.pub' --size Standard_B2s
 # create a virtual machine
-    #az vm create --name rgdemo-lnx-vm1 --admin-username rgadmin --resource-group rg-learn-rg --nics rgdemo-nic-1 --image UbuntuLTS --ssh-key-values '~/.ssh/az_id_rsa.pub' --size Standard_A2_v2
-    az vm create --name rgdemo-lnx-vm2 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-2 --image UbuntuLTS --size Standard_A2_v2
-    az vm create --name rgdemo-lnx-vm3 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-3 --image UbuntuLTS --size Standard_A2_v2
-    az vm create --name rgdemo-lnx-vm4 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-4 --image UbuntuLTS --size Standard_A2_v2
+
+    for ($i = 2; $i -lt 5; $i++) 
+    {
+        $vmName = "rgdemo-lnx-vm" + $i;
+        $nicName = "rgdemo-nic-" + $i;
+        az vm create --name $vmName --admin-username rgadmin --admin-password _Blackp3pper_ --resource-group $resourceGroupName --availability-set $availabilitySetName --nics $nicName --image UbuntuLTS --size Standard_B2s --no-wait
+    }
+
+    # az vm create --name rgdemo-lnx-vm1 --admin-username rgadmin --resource-group rg-learn-rg --nics rgdemo-nic-1 --image UbuntuLTS --ssh-key-values '~/.ssh/az_id_rsa.pub' --size Standard_B2s
+    az vm create --name rgdemo-lnx-vm2 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-2 --image UbuntuLTS --size Standard_B2s
+    az vm create --name rgdemo-lnx-vm3 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-3 --image UbuntuLTS --size Standard_B2s
+    az vm create --name rgdemo-lnx-vm4 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-4 --image UbuntuLTS --size Standard_B2s
     #az vm create --name rgdemo-lnx-vm5 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-5 --image UbuntuLTS --size Standard_A2_v2
     #az vm create --name rgdemo-lnx-vm6 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-6 --image UbuntuLTS --size Standard_A2_v2
     #az vm create --name rgdemo-lnx-vm7 --admin-username rgadmin --admin-password _BlackP3pp3r_ --resource-group rg-learn-rg --nics rgdemo-nic-7 --image UbuntuLTS --size Standard_A2_v2

@@ -1,0 +1,2 @@
+
+sudo openssl x509 -in /var/lib/docker/swarm/certificates/swarm-node.crt -text

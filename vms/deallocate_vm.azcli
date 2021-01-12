@@ -1,15 +1,19 @@
 az login
 az account set --subscription "4e2be44e-b375-46f2-af02-be5db4e96fbf"
 # List all VMs
-# $vmList = az vm list --output table
+$vmList = az vm list --output table
 # deallocate all vms
-# az vm list | ForEach-Object {
-#      az vm deallocate --name $_.Name --resource-group "rgdemo-rg" 
-# }
-az vm deallocate --name "rgdemo-lnx-vm1" --resource-group "rg-learn-rg" --no-wait
-az vm deallocate --name "rgdemo-lnx-vm2" --resource-group "rg-learn-rg" --no-wait
-az vm deallocate --name "rgdemo-lnx-vm3" --resource-group "rg-learn-rg" --no-wait
- az vm deallocate --name "rgdemo-lnx-vm4" --resource-group "rg-learn-rg" --no-wait
+$resourceGroupName = "rg-learn-rg";
+for ($i = 1; $i -lt 5; $i++) 
+{
+    $vmName = "rgdemo-lnx-vm" + $i;
+    az vm stop --name $vmName --resource-group $resourceGroupName
+    az vm deallocate --name $vmName --resource-group $resourceGroupName --no-wait
+}
+# az vm deallocate --name "rgdemo-lnx-vm1" --resource-group "rg-learn-rg" --no-wait
+# az vm deallocate --name "rgdemo-lnx-vm2" --resource-group "rg-learn-rg" --no-wait
+# az vm deallocate --name "rgdemo-lnx-vm3" --resource-group "rg-learn-rg" --no-wait
+#  az vm deallocate --name "rgdemo-lnx-vm4" --resource-group "rg-learn-rg" --no-wait
 # az vm deallocate --name "rgdemo-lnx-vm5" --resource-group "rgdemo-rg" --no-wait
 # az vm deallocate --name "rgdemo-lnx-vm6" --resource-group "rgdemo-rg" --no-wait
 # az vm deallocate --name "rgdemo-lnx-vm7" --resource-group "rgdemo-rg" --no-wait
